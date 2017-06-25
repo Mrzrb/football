@@ -8,10 +8,7 @@ class Index extends Controller
 {
     public function index()
     {
-        $data = Db::name('news')->find();
-        $this->assign('result',$data);
-      
-        return $this->fetch(); 
+        $this->redirect('/mainpage');
     }
 
     public function mainpage()

@@ -33,31 +33,13 @@
               <h2 class="add-article-box-title"><span>栏目</span></h2>
               <div class="add-article-box-content">
                 <ul class="category-list">
+                  {foreach $cats as $cat}
                   <li>
                     <label>
-                      <input name="category" type="radio" value="1">
-                      这是栏目 <em class="hidden-md">( 栏目ID: <span>1</span> )</em></label>
+                      <input name="cat_id" type="radio" value="{$cat.cat_id}">
+                      {$cat.cat_name} <em class="hidden-md">( 栏目ID: <span>{$cat.cat_id}</span> )</em></label>
                   </li>
-                  <li>
-                    <label>
-                      <input name="category" type="radio" value="2">
-                      这是栏目 <em class="hidden-md">( 栏目ID: <span>2</span> )</em></label>
-                  </li>
-                  <li>
-                    <label>
-                      <input name="category" type="radio" value="3" checked>
-                      这是栏目 <em class="hidden-md">( 栏目ID: <span>3</span> )</em></label>
-                  </li>
-                  <li>
-                    <label>
-                      <input name="category" type="radio" value="4">
-                      这是栏目 <em class="hidden-md">( 栏目ID: <span>4</span> )</em></label>
-                  </li>
-                  <li>
-                    <label>
-                      <input name="category" type="radio" value="5">
-                      这是栏目 <em class="hidden-md">( 栏目ID: <span>5</span> )</em></label>
-                  </li>
+                  {/foreach}
                 </ul>
               </div>
             </div>
