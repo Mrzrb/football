@@ -1,0 +1,3 @@
+%s/href="/href="__PUBLIC__\/admin\//g
+
+%s/src="/src="__PUBLIC__\/admin\//g

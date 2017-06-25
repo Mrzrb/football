@@ -60,9 +60,10 @@
 						</div>
 
 
+
 						<div class="row animate-box row-bottom-padded-sm">
 							<div class="col-md-3">
-								<h3 class="fh5co-section-heading"><span class="fh5co-number">N<sup>o</sup> 2</span> Experience</h3>
+								<h3 class="fh5co-section-heading"><span class="fh5co-number">N<sup>o</sup> *</span> Experience</h3>
 							</div>
 							<div class="col-md-9">
 								
@@ -70,7 +71,26 @@
 								<p>Design is the creation of a plan or convention for the construction of an object or a system as in architectural blueprints, engineering drawings, business processes, circuit diagrams and sewing patterns. Design is the creation of a plan or convention for the construction of an object or a system as in architectural blueprints, engineering drawings, business processes, circuit diagrams and sewing patterns.</p>
 							</div>
 						</div>	
+
+						{foreach  name='arts' item='art'}
+
+						<div class="row animate-box row-bottom-padded-sm">
+							<div class="col-md-3">
+								<h3 class="fh5co-section-heading"><span class="fh5co-number">N<sup>o</sup> {$key+1}</span> {$art.cat_name}</h3>
+							</div>
+							<div class="col-md-9">
+								
+								<p class="fh5co-lead">{$art.title}</p>
+								<p>{$art.content}</p>
+							</div>
+						</div>	
+
+						{/foreach}
+
 						
+
+
+
 
 						<div class="row animate-box row-bottom-padded-sm">
 							<div class="col-md-3">

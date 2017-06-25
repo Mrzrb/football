@@ -16,7 +16,9 @@ class Article extends Base
      */
     public function index()
     {
-        $articles = (new _Article())->select();
+        $articles = (new _Article())->paginate(10);
+        $curr = request()->get('page');
+        $this->assign('curr',$curr);
         $this->assign('articles',$articles);
         return $this->fetch();
     }
