@@ -11,27 +11,31 @@ class Index extends Base
         return $this->fetch();
     }
 
-    public function article()
-    {
-        $articles = (new Article())->select();
-        $this->assign('articles',$articles);
-        return $this->fetch();
-    }
 
-    public function artadd(Request $request)
-    {
-        if(empty($request->post()))
-        {
-            return $this->fetch();
-        }else{
-            $artadd = new Article();
-            $artadd->title = $request->post('title');
-            $artadd->content = $request->post('content');
-            $artadd->cat_id = -1;
-            $artadd->save();
-            $this->redirect('/admin/index/article');
-        }
 
-    }
+
+    // public function article()
+    // {
+    //     $articles = (new Article())->select();
+    //     $this->assign('articles',$articles);
+    //     return $this->fetch();
+    // }
+
+    // public function artadd(Request $request)
+    // {
+    //     if(empty($request->post()))
+    //     {
+    //         return $this->fetch();
+    //     }else{
+    //         $artadd = new Article();
+    //         $artadd->title = $request->post('title');
+    //         $artadd->content = $request->post('content');
+    //         $artadd->tags = $request->post('tags');
+    //         $artadd->cat_id = -1;
+    //         $artadd->save();
+    //         $this->redirect('/admin/index/article');
+    //     }
+
+    // }
 
 }

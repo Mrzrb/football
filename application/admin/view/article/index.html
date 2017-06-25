@@ -5,7 +5,7 @@
       <form action="/Article/checkAll" method="post" >
         <h1 class="page-header">操作</h1>
         <ol class="breadcrumb">
-          <li><a href="/admin/index/artadd">增加文章</a></li>
+          <li><a href="/admin/article/create">增加文章</a></li>
         </ol>
         <h1 class="page-header">管理 <span class="badge">7</span></h1>
         <div class="table-responsive">
@@ -30,7 +30,7 @@
                 <td class="hidden-sm">{$v.content}</td>
                 <td class="hidden-sm">0</td>
                 <td>{$v.pushtime}</td>
-                <td><a href="update-article.html">修改</a> <a rel="6">删除</a></td>
+                <td><a href="/admin/article/update/{$v.art_id}">修改</a> <a href="/admin/article/delete/{$v.art_id}">删除</a></td>
               </tr>
               {/foreach}
             </tbody>

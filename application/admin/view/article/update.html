@@ -1,28 +1,28 @@
-{include file="index/header"}
+{include file='index/header'}
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
       <div class="row">
-        <form action="/admin/index/artadd" method="post" class="add-article-form">
+        <form action="/admin/article/update/{$article.art_id}" method="post" class="add-article-form">
           <div class="col-md-9">
-            <h1 class="page-header">撰写新文章</h1>
+            <h1 class="page-header">文章修改</h1>
             <div class="form-group">
               <label for="article-title" class="sr-only">标题</label>
-              <input type="text" id="article-title" name="title" class="form-control" placeholder="在此处输入标题" required autofocus autocomplete="off">
+              <input type="text" id="article-title" name="title" class="form-control" placeholder="在此处输入标题" value="{$article.title}" required autofocus autocomplete="off">
             </div>
             <div class="form-group">
               <label for="article-content" class="sr-only">内容</label>
-              <script id="article-content" name="content" type="text/plain"></script>
+              <script id="article-content" name="content" type="text/plain">{$article.content}</script>
             </div>
             <div class="add-article-box">
               <h2 class="add-article-box-title"><span>关键字</span></h2>
               <div class="add-article-box-content">
-              	<input type="text" class="form-control" placeholder="请输入关键字" name="keywords" autocomplete="off">
+              	<input type="text" class="form-control" placeholder="请输入关键字" value="测试,文章" name="keywords" autocomplete="off">
                 <span class="prompt-text">多个标签请用英文逗号,隔开。</span>
               </div>
             </div>
             <div class="add-article-box">
               <h2 class="add-article-box-title"><span>描述</span></h2>
               <div class="add-article-box-content">
-              	<textarea class="form-control" name="describe" autocomplete="off"></textarea>
+              	<textarea class="form-control" name="describe" autocomplete="off">这是测试的文章描述这是测试的文章描述这是</textarea>
                 <span class="prompt-text">描述是可选的手工创建的内容总结，并可以在网页描述中使用</span>
               </div>
             </div>
@@ -35,7 +35,7 @@
                 <ul class="category-list">
                   <li>
                     <label>
-                      <input name="category" type="radio" value="1" checked>
+                      <input name="category" type="radio" value="1">
                       这是栏目 <em class="hidden-md">( 栏目ID: <span>1</span> )</em></label>
                   </li>
                   <li>
@@ -45,7 +45,7 @@
                   </li>
                   <li>
                     <label>
-                      <input name="category" type="radio" value="3">
+                      <input name="category" type="radio" value="3" checked>
                       这是栏目 <em class="hidden-md">( 栏目ID: <span>3</span> )</em></label>
                   </li>
                   <li>
@@ -64,7 +64,7 @@
             <div class="add-article-box">
               <h2 class="add-article-box-title"><span>标签</span></h2>
               <div class="add-article-box-content">
-                <input type="text" class="form-control" placeholder="输入新标签" name="tags" autocomplete="off">
+                <input type="text" class="form-control" placeholder="输入新标签" value="{$article.tags}" name="tags" autocomplete="off">
                 <span class="prompt-text">多个标签请用英文逗号,隔开</span> </div>
             </div>
             <div class="add-article-box">
@@ -79,12 +79,12 @@
             <div class="add-article-box">
               <h2 class="add-article-box-title"><span>发布</span></h2>
               <div class="add-article-box-content">
-              	<p><label>状态：</label><span class="article-status-display">未发布</span></p>
+              	<p><label>状态：</label><span class="article-status-display">已发布</span></p>
                 <p><label>公开度：</label><input type="radio" name="visibility" value="0" checked/>公开 <input type="radio" name="visibility" value="1" />加密</p>
                 <p><label>发布于：</label><span class="article-time-display"><input style="border: none;" type="datetime" name="time" value="2016-01-09 17:29:37" /></span></p>
               </div>
               <div class="add-article-box-footer">
-                <button class="btn btn-primary" type="submit" name="submit">发布</button>
+                <button class="btn btn-primary" type="submit" name="submit">更新</button>
               </div>
             </div>
           </div>
