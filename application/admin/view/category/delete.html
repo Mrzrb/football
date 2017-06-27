@@ -1,0 +1,9 @@
+                {foreach  name='categories' item='v'}
+                <tr>
+                  <td>{$key+1}</td>
+                  <td style="padding-left:{$v['lev']*20}px">{$v['cat_name']}</td>
+                  <td>web</td>
+                  <td>{$v['art_num']}</td>
+                  <td><a href="/admin/category/update/{$v.cat_id}">修改</a> <a onclick="test({$v['cat_id']})">删除</a></td>
+                </tr>
+                {/foreach}

@@ -45,20 +45,21 @@
                   <th><span class="glyphicon glyphicon-pencil"></span> <span class="visible-lg">操作</span></th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="enter">
                 {foreach  name='categories' item='v'}
                 <tr>
                   <td>{$key+1}</td>
-                  <td>{$v.cat_name}</td>
+                  <td style="padding-left:{$v['lev']*20}px">{$v['cat_name']}</td>
                   <td>web</td>
-                  <td>{$v.art_num}</td>
-                  <td><a href="/admin/category/update/{$v.cat_id}">修改</a> <a href="/admin/category/delete/{$v.cat_id}">删除</a></td>
+                  <td>{$v['art_num']}</td>
+                  <td><a href="/admin/category/update/{$v.cat_id}">修改</a> <a onclick="test({$v['cat_id']})">删除</a></td>
                 </tr>
                 {/foreach}
+                <a onclick="test(5)" id="5">test</a>
               </tbody>
             </table>
             <span class="prompt-text"><strong>注：</strong>删除一个栏目也会删除栏目下的文章和子栏目,请谨慎删除!</span> </div>
-        </div>
+        </div> 
       </div>
     </div>
   </div>
@@ -228,5 +229,45 @@ $(function(){
 	});   
 });
 </script>
+
+
+
+
+<script>
+  function test(id){
+   //alert('ggg');
+   xmlhttp = new XMLHttpRequest();
+    // if (window.XMLHttpRequest)
+    //   {// code for Firefox, Opera, IE7, etc.
+    //     xmlhttp=new XMLHttpRequest();
+    //   }
+    //     else if (window.ActiveXObject)
+    //   {// code for IE6, IE5
+    //     xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    //   }
+
+      if(xmlhttp !==null){
+        xmlhttp.onreadystatechange = function(){
+            if(xmlhttp.readyState==4 && xmlhttp.status ==200){
+              // alert(id);
+              document.getElementById('enter').innerHTML =xmlhttp.responseText;
+            }
+        };
+        var dest = '/admin/category/delete/' + id;
+        // alert(dest);
+        xmlhttp.open("GET",dest,true);
+        xmlhttp.send(null);
+        
+      }else{
+        alert('ggg');
+      }
+
+
+  }
+</script>
+
+
+
+
 </body>
 </html>

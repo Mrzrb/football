@@ -5,6 +5,7 @@ namespace app\admin\controller;
 use think\Controller;
 use think\Request;
 use app\admin\model\Category as Cat;
+use infiniteC\InfiniteC as tree;
 
 class Category extends Base
 {
@@ -18,7 +19,17 @@ class Category extends Base
         if(empty($request->post()))
         {
             $categories = Cat::all();
+            foreach($categories as $k => $v)
+            {
+                $categories[$k] = $v->toArray();
+            }
             $sum = Cat::count();
+            
+            $categories = (new tree($categories,'cat_id','parent_id'))->getSon(-1);
+
+            // dump($son);die;
+
+
             $this->assign('sum',$sum);
             $this->assign('categories',$categories);
             return $this->fetch();
@@ -41,11 +52,12 @@ class Category extends Base
      *
      * @return \think\Response
      */
-    public function create($request)
+    public function create(Request $request)
     {
         $create = new Cat();
         $create->cat_name = $request->post('cat_name');
         $create->parent_id = $request->post('parent_id');
+        // dump($create->create($request->post()));die;  
         return $create->save();
         
     }
@@ -95,6 +107,25 @@ class Category extends Base
     {
         $delete = new Cat();
         $delete->destroy($id);
-        $this->redirect('/admin/category');
+        // $this->redirect('/admin/category');
+
+
+        $categories = Cat::all();
+            foreach($categories as $k => $v)
+            {
+                $categories[$k] = $v->toArray();
+            }
+            $sum = Cat::count();
+            
+            $categories = (new tree($categories,'cat_id','parent_id'))->getSon(-1);
+
+            // dump($son);die;
+
+
+            $this->assign('sum',$sum);
+            $this->assign('categories',$categories);
+            echo $this->fetch();
+
+
     }
 }
