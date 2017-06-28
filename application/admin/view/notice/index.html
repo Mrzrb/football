@@ -1,70 +1,23 @@
-
 {include file='index/header'}
-
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
-      <form action="/Article/checkAll" method="post" >
-        <h1 class="page-header">操作</h1>
-        <ol class="breadcrumb">
-          <li><a href="/admin/article/create">增加文章</a></li>
-        </ol>
-        <h1 class="page-header">管理 <span class="badge">7</span></h1>
-        <div class="table-responsive">
-          <table class="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th><span class="glyphicon glyphicon-th-large"></span> <span class="visible-lg">选择</span></th>
-                <th><span class="glyphicon glyphicon-file"></span> <span class="visible-lg">标题</span></th>
-                <th><span class="glyphicon glyphicon-list"></span> <span class="visible-lg">栏目</span></th>
-                <th class="hidden-sm"><span class="glyphicon glyphicon-tag"></span> <span class="visible-lg">内容</span></th>
-                <th class="hidden-sm"><span class="glyphicon glyphicon-comment"></span> <span class="visible-lg">评论</span></th>
-                <th><span class="glyphicon glyphicon-time"></span> <span class="visible-lg">日期</span></th>
-                <th><span class="glyphicon glyphicon-pencil"></span> <span class="visible-lg">操作</span></th>
-              </tr>
-            </thead>
-            <tbody>
-              {foreach $articles as $v}
-              <tr>
-                <td><input type="checkbox" class="input-control" name="checkbox[]" value="" /></td>
-                <td class="article-title">{$v.title}</td>
-                <td>{$v.cat_id}</td>
-                <td class="hidden-sm">{$v.content|mb_substr=0,15}</td>
-                <td class="hidden-sm">0</td>
-                <td>{$v.pushtime}</td>
-                <td><a href="/admin/article/update/{$v.art_id}">修改</a> <a href="/admin/article/delete/{$v.art_id}">删除</a></td>
-              </tr>
-              {/foreach}
-            </tbody>
-          </table>
-        </div>
-        <footer class="message_footer">
-          <nav>
-            <div class="btn-toolbar operation" role="toolbar">
-              <div class="btn-group" role="group"> <a class="btn btn-default" onClick="select()">全选</a> <a class="btn btn-default" onClick="reverse()">反选</a> <a class="btn btn-default" onClick="noselect()">不选</a> </div>
-              <div class="btn-group" role="group">
-                <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="删除全部选中" name="checkbox_delete">删除</button>
+      <div class="row">
+        <div class="col-md-5">
+          <h1 class="page-header">添加首页宣言</h1>
+          <form action="/admin/notice" method="post" autocomplete="off">
+          {foreach name='data' item='v'}
+            <div class="form-group">
+              <label for="category-name">宣言</label>
+              <input type="text" id="category-name" name="notice{$v['flag']}Main" class="form-control" value="{$v['title']}" required autocomplete="off">
+              <input type="text" id="category-name" name="notice{$v['flag']}Sub" class="form-control" value="{$v['content']}" required autocomplete="off">
               </div>
-            </div>
-            <!--<ul class="pagination pagenav">
-              <li class="disabled"><a aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a> </li>
-              <li class="active"><a href="__PUBLIC__/admin/#">1</a></li>
-              <li><a href="__PUBLIC__/admin/#">2</a></li>
-              <li><a href="__PUBLIC__/admin/#">3</a></li>
-              <li><a href="__PUBLIC__/admin/#">4</a></li>
-              <li><a href="__PUBLIC__/admin/#">5</a></li>
-              <li><a href="__PUBLIC__/admin/#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a> </li>
-            </ul>-->
+           {/foreach}
 
 
-            <!--<ul class="pager">
-              <li><a href="__PUBLIC__/admin/?page={$curr-1}">&laquo;</a></li>
-              <li class=""><a href="__PUBLIC__/admin/?page={$curr+1}">&raquo;</a></li>
-            </ul>-->
-            <ul class="pagination pagenav">
-              {$articles->render()}
-            </ul>
-          </nav>
-        </footer>
-      </form>
+            <button class="btn btn-primary" type="submit">提交</button>
+          </form>
+        </div>
+        
+      </div>
     </div>
   </div>
 </section>
@@ -215,13 +168,13 @@ $(function(){
 	$("#main table tbody tr td a").click(function(){
 		var name = $(this);
 		var id = name.attr("rel"); //对应id  
-		if (event.srcElement.outerText == "删除") 
+		if (event.srcElement.outerText === "删除") 
 		{
 			if(window.confirm("此操作不可逆，是否确认？"))
 			{
 				$.ajax({
 					type: "POST",
-					url: "/Article/delete",
+					url: "/Category/delete",
 					data: "id=" + id,
 					cache: false, //不缓存此页面   
 					success: function (data) {
@@ -233,5 +186,45 @@ $(function(){
 	});   
 });
 </script>
+
+
+
+
+<script>
+  function test(id){
+   //alert('ggg');
+   xmlhttp = new XMLHttpRequest();
+    // if (window.XMLHttpRequest)
+    //   {// code for Firefox, Opera, IE7, etc.
+    //     xmlhttp=new XMLHttpRequest();
+    //   }
+    //     else if (window.ActiveXObject)
+    //   {// code for IE6, IE5
+    //     xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    //   }
+
+      if(xmlhttp !==null){
+        xmlhttp.onreadystatechange = function(){
+            if(xmlhttp.readyState==4 && xmlhttp.status ==200){
+              // alert(id);
+              document.getElementById('enter').innerHTML =xmlhttp.responseText;
+            }
+        };
+        var dest = '/admin/category/delete/' + id;
+        // alert(dest);
+        xmlhttp.open("GET",dest,true);
+        xmlhttp.send(null);
+        
+      }else{
+        alert('ggg');
+      }
+
+
+  }
+</script>
+
+
+
+
 </body>
 </html>
