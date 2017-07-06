@@ -17,7 +17,9 @@ class Article extends Controller
     {
         
         $article = (new \think\Db())::table('article')->alias('art')->join('category cat','art.cat_id=cat.cat_id')->select($id)[0];
+        
         if($article === null) abort(404,'文章号错误');
+        $article['content'] = setImgStyle($article['content'],100);
         $this->assign('article',$article);
         return $this->fetch();
     }

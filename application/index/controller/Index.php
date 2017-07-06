@@ -9,14 +9,11 @@ class Index extends Controller
 {
     public function index()
     {
-
         $this->redirect('/mainpage');
     }
 
     public function mainpage()
     {
-        
-
         $newsModel = new news();
         $news = $newsModel->where('flag=0')->find();
         $this->assign('news',$news); 
@@ -30,9 +27,11 @@ class Index extends Controller
         $this->assign('news',$news); 
  
         $arts =  Db::table('article')->alias('art')->join('category cat','art.cat_id=cat.cat_id')->select();
-        // $arts =  Db::table('article')->select();
         // dump($arts);die;
-        // dump($arts);die;
+        foreach($arts as $k => $v)
+        {
+            $arts[$k]['content'] = setImgStyle($v['content'],100);
+        }
         $this->assign('arts',$arts);
         return $this->fetch();
     }

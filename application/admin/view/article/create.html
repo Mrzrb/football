@@ -1,9 +1,15 @@
 {include file="index/header"}
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
       <div class="row">
-        <form action="/admin/article/create" method="post" class="add-article-form">
+        <form action="/admin/article/create" enctype="multipart/form-data" method="post" class="add-article-form">
           <div class="col-md-9">
             <h1 class="page-header">撰写新文章</h1>
+
+
+
+            <input type="file" name='test'>
+
+
             <div class="form-group">
               <label for="article-title" class="sr-only">标题</label>
               <input type="text" id="article-title" name="title" class="form-control" placeholder="在此处输入标题" required autofocus autocomplete="off">
@@ -65,6 +71,7 @@
                 <p><label>公开度：</label><input type="radio" name="visibility" value="0" checked/>公开 <input type="radio" name="visibility" value="1" />加密</p>
                 <p><label>发布于：</label><span class="article-time-display"><input style="border: none;" type="datetime" name="time" value="2016-01-09 17:29:37" /></span></p>
               </div>
+
               <div class="add-article-box-footer">
                 <button class="btn btn-primary" type="submit" name="submit">发布</button>
               </div>

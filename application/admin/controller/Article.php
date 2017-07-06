@@ -16,10 +16,12 @@ class Article extends Base
      */
     public function index()
     {
-        $articles = (new _Article())->paginate(10);
+        $articles = (new _Article())->paginate(5);
         $curr = request()->get('page');
         $this->assign('curr',$curr);
         $this->assign('articles',$articles);
+        // $r = new \imgUpload\up\MainUp('gg');
+        // $r->checkDir();
         return $this->fetch();
     }
 

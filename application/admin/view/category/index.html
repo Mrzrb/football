@@ -52,7 +52,7 @@
                   <td style="padding-left:{$v['lev']*20}px">{$v['cat_name']}</td>
                   <td>web</td>
                   <td>{$v['art_num']}</td>
-                  <td><a href="/admin/category/update/{$v.cat_id}">修改</a> <a onclick="test({$v['cat_id']})">删除</a></td>
+                  <td><a href="/admin/category/update/{$v.cat_id}">修改</a> <a onclick="test1({$v['cat_id']})">删除</a></td>
                 </tr>
                 {/foreach}
                 <a onclick="test(5)" id="5">test</a>
@@ -233,7 +233,7 @@ $(function(){
 
 
 
-<script>
+<!--<script>
   function test(id){
    //alert('ggg');
    xmlhttp = new XMLHttpRequest();
@@ -263,6 +263,15 @@ $(function(){
       }
 
 
+  }
+</script>-->
+<script>
+  function test1(id){
+    var dest = '/admin/category/delete/' + id; 
+    var p = ajax('GET',dest);
+    p.then(function(text){
+      document.getElementById('enter').innerHTML = text;
+    });
   }
 </script>
 

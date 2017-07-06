@@ -10,3 +10,14 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+
+
+function setImgStyle($str,$ratio)
+{
+    $pattern = '/<img/';
+
+    return preg_replace($pattern,"<img style='width:$ratio%;height:$ratio%'",$str);
+}
+
+
+
