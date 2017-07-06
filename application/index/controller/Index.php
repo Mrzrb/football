@@ -41,4 +41,12 @@ class Index extends Controller
         $arts = Db::table('article')->alias('art')->join('category cat','art.cat_id=cat.cat_id')->select();
         dump($arts);
     }
+
+
+    public function send($from=0,$num=0){
+        $arts =  Db::table('article')->alias('art')->join('category cat','art.cat_id=cat.cat_id')->limit($from,$num)->select();
+        // if(arts){
+            return json_encode($arts,JSON_UNESCAPED_UNICODE);
+        // }else return 1;
+    }
 }
