@@ -19,4 +19,5 @@ return [
     ],
     'mainpage'  =>  'index/index/mainpage',
     'news'  =>  'index/index/news',
+    'join'  =>  'index/index/join',
 ];

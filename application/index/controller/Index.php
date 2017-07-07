@@ -2,8 +2,10 @@
 namespace app\index\controller;
 use think\Controller;
 use think\Db;
+use think\Request;
 use app\index\model\news as news;
 use app\common\model\Article as Art;
+use app\index\model\member as mem;
 
 class Index extends Controller
 {
@@ -35,6 +37,23 @@ class Index extends Controller
         $this->assign('arts',$arts);
         return $this->fetch();
     }
+
+
+    public function join(Request $request){
+        if(empty($request->post()))
+        {
+            return $this->fetch();
+        }else{
+            // dump($request->post());die;
+            $mem = new mem();
+            $mem->name = $request->post('name');
+            $mem->role = $request->post('role');
+            $mem->institute = $request->post('institute');
+            $mem->phoneNum = ''.$request->post('phoneNum');
+            dump($mem->save());
+        }
+    }
+
 
     public function test()
     {

@@ -1,0 +1,121 @@
+{include file="index/header"}
+
+
+<body>
+
+	<!-- Loader -->
+	<div class="fh5co-loader"></div>
+
+	<div id="fh5co-page">
+		<nav id="fh5co-nav" role="navigation">
+			<ul>
+				<li class="animate-box "><a href="/mainpage" class="transition">Home</a></li>
+				<li class="animate-box"><a href="/news" class="transition">NEWS</a></li>
+				<li class="animate-box fh5co-active"><a href="/join" class="transition">JOIN</a></li>
+			</ul>
+			<a class="style-toggle js-style-toggle" data-style="default" href="__PUBLIC__/home/#">
+				<span class="fh5co-circle"></span>
+			</a>
+		</nav>
+
+
+
+
+
+		<div class="js-fh5co-waypoint fh5co-project-detail" id="fh5co-main" data-colorbg="">
+			<div class="container">
+
+
+				<div class="row">
+					<div class="col-md-12">
+
+						<form class="form-horizontal" role="form" action="/join" method="post" id="form" onsubmit="return msubmit()">
+							<fieldset>
+								<legend>加入我们</legend>
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="name">姓名</label>
+									<div class="col-sm-4">
+										<input class="form-control" id="name" name="name" type="text" placeholder="请输入你的姓名" />
+									</div>
+									<label class="col-sm-2 control-label" for="institute">学院</label>
+									<div class="col-sm-4">
+										<input class="form-control" name="institute" id="institute" type="text" placeholder="请输入你的学院" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="phoneNum">联系方式</label>
+									<div class="col-sm-4">
+										<input class="form-control" name="phoneNum" id="phoneNum" type="text" placeholder="请输入你的联系方式" />
+									</div>
+									<label class="col-sm-2 control-label" for="role">角色</label>
+									<div class="col-sm-4">
+										<select class="form-control" name="role">
+											<option value="0">球员</option>
+											<option value="1">经理</option>
+										</select>
+									</div>
+
+
+									
+
+
+
+								</div>
+							</fieldset>
+							<input class="btn btn-default col-sm-2 col-sm-offset-5" type="submit" value="提交">
+						</form>
+						<!-- loading  -->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer id="fh5co-footer" class="js-fh5co-waypoint">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<p><small>&copy; 2016 Hold. All Rights Reserved. <br> Created by <a href="__PUBLIC__/home/#/" target="_blank">Falcon</a>   </p>
+						<ul class="fh5co-social">
+							<li>
+								<a href="__PUBLIC__/home/#"><i class="icon-twitter"></i></a>
+							</li>
+							<li>
+								<a href="__PUBLIC__/home/#"><i class="icon-facebook"></i></a>
+							</li>
+							<li>
+								<a href="__PUBLIC__/home/#"><i class="icon-instagram"></i></a>
+							</li>
+							<li>
+								<a href="__PUBLIC__/home/#"><i class="icon-dribbble"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+	</div>
+
+	<script>
+		
+		var form = $('form#form');
+		var  phone = $('input#phoneNum');
+
+		function msubmit()
+		{
+			var pattern = /1\d{10}/;
+			if(pattern.test(phone.val()) === true )
+			{
+				form.submit();
+			}else{
+				alert('请输入正确手机号码');
+				return false;
+			}
+			
+		}
+
+	</script>	
+
+	</body>
+</html>
